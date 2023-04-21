@@ -22,11 +22,40 @@
 				Console.WriteLine(stack.Pop());         // 출력순서 : 4 3 2 1 0
 			}
 		}
+		public static bool ParenthesesChecker(Stack.MyStack<char> mystack)     //MyStack을 이용한 괄호검사기 함수
+		{
+			int count = mystack.Count;                                    //스택의 배열값의 갯수를 저장
+			if (mystack.Peek() == '(')                                      //'('가 마지막일경우 무조건 false이므로 처음에 제외
+				return false;
+			else
+			{
+				int answer = 0;
+				for (int i = 0; i < count; i++)
+				{
+					switch (mystack.Pop())                                 //스택에서 값을 하나씩 뺌
+					{
+						case '(':
+							answer++;
+							break;
+						case ')':
+							answer--;
+							break;
+					}
+				}
+				return answer == 0;         //'('이면 +1 ')' -1해서 둘의 짝이 맞으면 0이 나올 것이고 맞지 않다면 0외에 값이 나올 것임 그것을 0과 비교한 값을 반환
+			}
+		}
 
 
 		static void Main(string[] args)
         {
-			Test();
-        }
+			Stack.MyStack<char> stack = new Stack.MyStack<char>();
+			stack.Push('(');
+			stack.Push('(');
+			stack.Push(')');
+			stack.Push(')');
+			stack.Push(')');
+			Console.WriteLine(ParenthesesChecker(stack));
+		}
     }
 }

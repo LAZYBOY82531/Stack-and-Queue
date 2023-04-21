@@ -68,6 +68,5 @@ namespace Stack
 			}
 			array[++topIndex] = item;        //인덱스 다음 배열에 받은 값을 넣음.
 		}
-
 	}
 }
